@@ -4,7 +4,9 @@ import io from "socket.io-client";
 import { ViewBoard } from "../../components";
 import { calculateWinner, generateNextStepIndex } from "../../utils.js";
 
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect(
+  process.env.REACT_APP_API_URL || "http://localhost:3001"
+);
 
 const Board = () => {
   const [cubes, setCubes] = useState([Array(9).fill(null)]);
