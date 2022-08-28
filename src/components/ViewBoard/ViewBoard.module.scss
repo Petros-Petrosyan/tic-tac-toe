@@ -28,7 +28,7 @@
     }
 
     &__button {
-        margin: 25px auto;
+        margin: 25px 0;
         text-align: center;
 
         button {
@@ -42,4 +42,11 @@
             cursor: pointer;
         }
     }
+    &__flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
 }
+

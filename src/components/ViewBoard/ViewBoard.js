@@ -1,9 +1,5 @@
 import React from "react";
-
-// classes
 import classes from "./ViewBoard.module.scss";
-
-// components
 import { Cubes } from "../";
 
 const ViewBoard = (props) => {
@@ -18,6 +14,8 @@ const ViewBoard = (props) => {
     startNewHandler,
     goBackStepHandler,
     startGameHandler,
+    room,
+    startInSameRoom,
   } = props;
 
   const printCubes = lastCubes.map((cube, i) => {
@@ -34,6 +32,7 @@ const ViewBoard = (props) => {
 
   let currentPlayer;
   let startBtn = null;
+  let leaveRoomBtn = null;
   let previousStepBtn = null;
   if (winnerPlayer) {
     let currentPlayerText =
@@ -41,12 +40,22 @@ const ViewBoard = (props) => {
     currentPlayer = <h2>{currentPlayerText}</h2>;
     startBtn = (
       <div className={classes.main__button}>
-        <button onClick={startNewHandler}>Start new</button>
+        <button onClick={!room ? startNewHandler : startInSameRoom}>
+          Start new
+        </button>
       </div>
     );
+
+    if (room) {
+      leaveRoomBtn = (
+        <div className={classes.main__button}>
+          <button onClick={startNewHandler}>Leave Room</button>
+        </div>
+      );
+    }
   } else {
     currentPlayer = <h2>Player {isPlayerX ? "X" : "O"}</h2>;
-    if (isOneStep) {
+    if (isOneStep && !room) {
       previousStepBtn = (
         <div className={classes.main__button}>
           <button onClick={goBackStepHandler}>One step back</button>
@@ -65,7 +74,7 @@ const ViewBoard = (props) => {
           onClick={() => startGameHandler(2)}
           className={classes.main__start__section}
         >
-          PLAY
+          PLAY WITH FRIENDS
         </div>
         <div
           onClick={() => startGameHandler(1)}
@@ -86,7 +95,11 @@ const ViewBoard = (props) => {
         </header>
         <section className={classes.main__container}>{printCubes}</section>
         <footer>
-          {startBtn}
+          <div className={classes.main__flex}>
+            {startBtn}
+            {leaveRoomBtn}
+          </div>
+
           {previousStepBtn}
         </footer>
       </main>
