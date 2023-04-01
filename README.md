@@ -1,4 +1,4 @@
-# Wedding Invitation
+# X_O_GAME
 
 ## Technology stack
 
