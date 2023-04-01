@@ -49,7 +49,7 @@ const ViewBoard = (props) => {
     if (room) {
       leaveRoomBtn = (
         <div className={classes.main__button}>
-          <button onClick={startNewHandler}>Leave Room</button>
+          <button onClick={startNewHandler}>Leave room</button>
         </div>
       );
     }
@@ -58,7 +58,7 @@ const ViewBoard = (props) => {
     if (isOneStep && !room) {
       previousStepBtn = (
         <div className={classes.main__button}>
-          <button onClick={goBackStepHandler}>One step back</button>
+          <button onClick={goBackStepHandler}>Back</button>
         </div>
       );
     }
@@ -66,21 +66,19 @@ const ViewBoard = (props) => {
 
   let content = (
     <main className={classes.main}>
-      <header>
+      <header className={classes.header}>
         <h1>Tic Tac Toe</h1>
       </header>
       <section className={classes.main__start}>
-        <div
-          onClick={() => startGameHandler(2)}
-          className={classes.main__start__section}
-        >
-          PLAY WITH FRIENDS
+        <div className={classes.start_button}>
+          <button onClick={() => startGameHandler(1)} className={classes.btn}>
+            Play with computer
+          </button>
         </div>
-        <div
-          onClick={() => startGameHandler(1)}
-          className={classes.main__start__section}
-        >
-          PLAY WITH COMPUTER
+        <div className={classes.start_button}>
+          <button onClick={() => startGameHandler(2)} className={classes.btn}>
+            Play with friend
+          </button>
         </div>
       </section>
     </main>
@@ -89,7 +87,7 @@ const ViewBoard = (props) => {
   if (playerCount) {
     content = (
       <main className={classes.main}>
-        <header>
+        <header className={classes.header}>
           <h1>Tic Tac Toe</h1>
           {currentPlayer}
         </header>
